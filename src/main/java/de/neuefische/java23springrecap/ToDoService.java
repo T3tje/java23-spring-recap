@@ -2,8 +2,6 @@ package de.neuefische.java23springrecap;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -40,7 +38,6 @@ public class ToDoService {
                 } else {
                     throw new NoSuchElementException("Element mit der id: " +id+ " nicht gefunden");
                 }
-
     }
 
     public void deleteToDo(String id) {
@@ -48,9 +45,8 @@ public class ToDoService {
         if (toDoToDeleteOptional.isPresent()) {
             ToDo toDoToDelete = toDoToDeleteOptional.get();
             repo.delete(toDoToDelete);
+        } else {
+            throw new NoSuchElementException("Todo mit der id " + id + " nicht gefunden");
         }
     }
-
-
-
 }
